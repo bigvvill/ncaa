@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ncaa.MainActivity">
+
+    <TextView
+        android:id="@+id/game1Team1"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="264dp"
+        android:background="@drawable/lines"
+        android:text="Villanova"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="16dp"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/game1Team2"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/blines"
+        android:text="Kansas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/game1Team1"
+        android:textSize="16dp"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/game2Team1"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/lines"
+        android:text="Loyola"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/game1Team2"
+        android:textSize="16dp"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/game2Team2"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/blines"
+        android:text="Michigan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/game2Team1"
+        android:textSize="16dp"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/game3Team1"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="280dp"
+        android:background="@drawable/lines"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="16dp"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/game3Team2"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="128dp"
+        android:background="@drawable/blines"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spacer"
+        android:textSize="16dp"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/spacer"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="128dp"
+        android:background="@drawable/rlines"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/game3Team1" />
+
+    <TextView
+        android:id="@+id/champ"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="328dp"
+        android:background="@drawable/lines"
+        app:layout_constraintStart_toEndOf="@+id/spacer"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="16dp"
+        android:textColor="@android:color/black" />
+
+    <EditText
+        android:id="@+id/game1Score1"
+        android:layout_width="32dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="260dp"
+        android:inputType="number"
+        android:nextFocusDown="@+id/game1Score2"
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/game1Score2"
+        android:layout_width="32dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="312dp"
+        android:inputType="number"
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/game2Score1"
+        android:layout_width="32dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="370dp"
+        android:inputType="number"
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/game2Score2"
+        android:layout_width="32dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="420dp"
+        android:inputType="number"
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:nextFocusDown="@+id/game3Score1" />
+
+    <EditText
+        android:id="@+id/game3Score1"
+        android:layout_width="32dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="218dp"
+        android:layout_marginTop="280dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:inputType="number"
+        android:textSize="15dp"
+        android:nextFocusDown="@+id/game3Score2" />
+
+    <EditText
+        android:id="@+id/game3Score2"
+        android:layout_width="32dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="218dp"
+        android:layout_marginTop="383dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:inputType="number"
+        android:textSize="15dp"
+        android:nextFocusDown="@+id/game1Score1" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="204dp"
+        android:background="@drawable/border"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/finallabel" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="204dp"
+        android:background="@drawable/border"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/semilabel" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="264dp"
+        android:layout_marginTop="204dp"
+        android:background="@drawable/border"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/champlabel" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="97dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/finalfour" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/villanova" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/kansas" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="272dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/loyola" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="328dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/michigan" />
+
+    <Button
+        android:id="@+id/textButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="508dp"
+        android:text="Text Your Picks"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/emailButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="208dp"
+        android:layout_marginTop="508dp"
+        android:text="Email your picks"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="394dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="116dp"
+        android:text="Fill in your scores for each game. Then text or email your picks with the buttons below. \n\nThanks for playing!"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@android:color/black" />
+
+</android.support.constraint.ConstraintLayout>
