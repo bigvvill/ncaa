@@ -35,10 +35,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 public class MainActivity extends AppCompatActivity {
 
     // declare variables
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS =0 ;
+    String player;
     String game1Winner;
     String game1Loser;
     String game1WinnerScore;
@@ -66,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         EditText game2Score2 = (EditText) findViewById(R.id.game2Score2);
         EditText game3Score1 = (EditText) findViewById(R.id.game3Score1);
         EditText game3Score2 = (EditText) findViewById(R.id.game3Score2);
+        EditText userName = (EditText) findViewById(R.id.userName);
 
         // change listeners
         // game 1 score 1 listener
@@ -91,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
                 TextView game1Team2 = (TextView) findViewById(R.id.game1Team2);
                 TextView game3Team1 = (TextView) findViewById(R.id.game3Team1);
 
-                int g1S1 = 0;
-                int g1S2 = 0;
+                int g1S1 = 0; // holds game 1 score 1 as an integer
+                int g1S2 = 0; // holds game 1 score 2 as an integer
 
                 if (game1Score1.getText().toString().matches("")) {
                     g1S1 = 0;
@@ -136,8 +140,8 @@ public class MainActivity extends AppCompatActivity {
                 TextView game1Team2 = (TextView) findViewById(R.id.game1Team2);
                 TextView game3Team1 = (TextView) findViewById(R.id.game3Team1);
 
-                int g1S1 = 0;
-                int g1S2 = 0;
+                int g1S1 = 0; // holds game 1 score 1 as an integer
+                int g1S2 = 0; // holds game 1 score 2 as an integer
 
                 if (game1Score1.getText().toString().matches("")) {
                     g1S1 = 0;
@@ -182,8 +186,8 @@ public class MainActivity extends AppCompatActivity {
                 TextView game2Team2 = (TextView) findViewById(R.id.game2Team2);
                 TextView game3Team2 = (TextView) findViewById(R.id.game3Team2);
 
-                int g2S1 = 0;
-                int g2S2 = 0;
+                int g2S1 = 0; // holds game 2 score 1 as an integer
+                int g2S2 = 0; // holds game 2 score 2 as an integer
 
                 if (game2Score1.getText().toString().matches("")) {
                     g2S1 = 0;
@@ -226,8 +230,8 @@ public class MainActivity extends AppCompatActivity {
                 TextView game2Team2 = (TextView) findViewById(R.id.game2Team2);
                 TextView game3Team2 = (TextView) findViewById(R.id.game3Team2);
 
-                int g2S1 = 0;
-                int g2S2 = 0;
+                int g2S1 = 0; // holds game 2 score 1 as an integer
+                int g2S2 = 0; // holds game 2 score 2 as an integer
 
                 if (game2Score1.getText().toString().matches("")) {
                     g2S1 = 0;
@@ -270,8 +274,8 @@ public class MainActivity extends AppCompatActivity {
                 TextView game3Team2 = (TextView) findViewById(R.id.game3Team2);
                 TextView champ = (TextView) findViewById(R.id.champ);
 
-                int g3S1 = 0;
-                int g3S2 = 0;
+                int g3S1 = 0; // holds game 3 score 1 as an integer
+                int g3S2 = 0; // holds game 3 score 2 as an integer
 
                 if (game3Score1.getText().toString().matches("")) {
                     g3S1 = 0;
@@ -315,8 +319,8 @@ public class MainActivity extends AppCompatActivity {
                 TextView game3Team2 = (TextView) findViewById(R.id.game3Team2);
                 TextView champ = (TextView) findViewById(R.id.champ);
 
-                int g3S1 = 0;
-                int g3S2 = 0;
+                int g3S1 = 0; // holds game 3 score 1 as an integer
+                int g3S2 = 0; // holds game 3 score 2 as an integer
 
                 if (game3Score1.getText().toString().matches("")) {
                     g3S1 = 0;
@@ -342,6 +346,8 @@ public class MainActivity extends AppCompatActivity {
         textButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
 
+                boolean error = false;
+                EditText userName = (EditText) findViewById(R.id.userName);
                 EditText game1Score1 = (EditText) findViewById(R.id.game1Score1);
                 EditText game1Score2 = (EditText) findViewById(R.id.game1Score2);
                 EditText game2Score1 = (EditText) findViewById(R.id.game2Score1);
@@ -356,65 +362,85 @@ public class MainActivity extends AppCompatActivity {
                 TextView game3Team1 = (TextView) findViewById(R.id.game3Team1);
                 TextView game3Team2 = (TextView) findViewById(R.id.game3Team2);
                 TextView champ = (TextView) findViewById(R.id.champ);
+                TextView displayText = (TextView) findViewById(R.id.textView12);
 
-                // set game data for display
-                game1Winner = game3Team1.getText().toString();
+                // validate inputs
+                if ((userName.getText().toString().matches("")) ||
+                        (game1Score1.getText().toString().matches("")) ||
+                        (game1Score2.getText().toString().matches("")) ||
+                        (game2Score1.getText().toString().matches("")) ||
+                        (game2Score2.getText().toString().matches("")) ||
+                        (game3Score1.getText().toString().matches("")) ||
+                        (game3Score2.getText().toString().matches(""))) {
 
-                if (game1Winner.equals(game1Team1.getText().toString())) {
-                    game1Loser = game1Team2.getText().toString();
+                    displayText.setText("Fill in your scores for each game. Then text or email " +
+                            "your picks with the buttons below. \n\nPLEASE FILL ALL THE BLANKS!");
                 } else {
-                    game1Loser = game1Team1.getText().toString();
+
+                    // set game data for display
+                    player = userName.getText().toString();
+                    game1Winner = game3Team1.getText().toString();
+
+                    if (game1Winner.equals(game1Team1.getText().toString())) {
+                        game1Loser = game1Team2.getText().toString();
+                    } else {
+                        game1Loser = game1Team1.getText().toString();
+                    }
+
+                    game2Winner = game3Team2.getText().toString();
+
+                    if (game2Winner.equals(game2Team1.getText().toString())) {
+                        game2Loser = game2Team2.getText().toString();
+                    } else {
+                        game1Loser = game2Team1.getText().toString();
+                    }
+
+                    game3Winner = champ.getText().toString();
+
+                    if (game3Winner.equals(game3Team1.getText().toString())) {
+                        game3Loser = game3Team2.getText().toString();
+                    } else {
+                        game3Loser = game3Team1.getText().toString();
+                    }
+
+                    // determine winner and loser scores
+                    if (Integer.parseInt(game1Score1.getText().toString()) >
+                            Integer.parseInt(game1Score2.getText().toString())) {
+                        game1WinnerScore = game1Score1.getText().toString();
+                        game1LoserScore = game1Score2.getText().toString();
+                    } else {
+                        game1WinnerScore = game1Score2.getText().toString();
+                        game1LoserScore = game1Score1.getText().toString();
+                    }
+
+                    if (Integer.parseInt(game2Score1.getText().toString()) >
+                            Integer.parseInt(game2Score2.getText().toString())) {
+                        game2WinnerScore = game2Score1.getText().toString();
+                        game2LoserScore = game2Score2.getText().toString();
+                    } else {
+                        game2WinnerScore = game2Score2.getText().toString();
+                        game2LoserScore = game2Score1.getText().toString();
+                    }
+
+                    if (Integer.parseInt(game3Score1.getText().toString()) >
+                            Integer.parseInt(game3Score2.getText().toString())) {
+                        game3WinnerScore = game3Score1.getText().toString();
+                        game3LoserScore = game3Score2.getText().toString();
+                    } else {
+                        game3WinnerScore = game3Score2.getText().toString();
+                        game3LoserScore = game3Score1.getText().toString();
+                    }
+
+                    // data to be used as SMS Message body
+                    textMessage = "Player: " + player + "\n" + game1Winner + " over " + game1Loser +
+                            " by " + game1WinnerScore + " to " + game1LoserScore + "\n" + game2Winner +
+                            " over " + game2Loser + " by " + game2WinnerScore + " to " + game2LoserScore +
+                            "\n" + game3Winner + " over " + game3Loser + " by " + game3WinnerScore +
+                            " to " + game3LoserScore;
+
+                    // calls the sendSMSMessage function that opens up the SMS client on the device
+                    sendSMSMessage();
                 }
-
-                game2Winner = game3Team2.getText().toString();
-
-                if (game2Winner.equals(game2Team1.getText().toString())) {
-                    game2Loser = game2Team2.getText().toString();
-                } else {
-                    game1Loser = game2Team1.getText().toString();
-                }
-
-                game3Winner = champ.getText().toString();
-
-                if (game3Winner.equals(game3Team1.getText().toString())) {
-                    game3Loser = game3Team2.getText().toString();
-                } else {
-                    game3Loser = game3Team1.getText().toString();
-                }
-
-                // determine winner and loser scores
-                if (Integer.parseInt(game1Score1.getText().toString()) > Integer.parseInt(game1Score2.getText().toString())) {
-                    game1WinnerScore = game1Score1.getText().toString();
-                    game1LoserScore = game1Score2.getText().toString();
-                } else {
-                    game1WinnerScore = game1Score2.getText().toString();
-                    game1LoserScore = game1Score1.getText().toString();
-                }
-
-                if (Integer.parseInt(game2Score1.getText().toString()) > Integer.parseInt(game2Score2.getText().toString())) {
-                    game2WinnerScore = game2Score1.getText().toString();
-                    game2LoserScore = game2Score2.getText().toString();
-                } else {
-                    game2WinnerScore = game2Score2.getText().toString();
-                    game2LoserScore = game2Score1.getText().toString();
-                }
-
-                if (Integer.parseInt(game3Score1.getText().toString()) > Integer.parseInt(game3Score2.getText().toString())) {
-                    game3WinnerScore = game3Score1.getText().toString();
-                    game3LoserScore = game3Score2.getText().toString();
-                } else {
-                    game3WinnerScore = game3Score2.getText().toString();
-                    game3LoserScore = game3Score1.getText().toString();
-                }
-
-                // data to be used as SMS Message body
-                textMessage = game1Winner + " over " + game1Loser + " by " + game1WinnerScore +
-                        " to " + game1LoserScore + "\n" + game2Winner + " over " + game2Loser +
-                        " by " + game2WinnerScore + " to " + game2LoserScore + "\n" + game3Winner +
-                        " over " + game3Loser + " by " + game3WinnerScore + " to " + game3LoserScore;
-
-                // calls the sendSMSMessage function that opens up the SMS client on the device
-                sendSMSMessage();
             }
         });
 
@@ -422,6 +448,7 @@ public class MainActivity extends AppCompatActivity {
         emailButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
 
+                EditText userName = (EditText) findViewById(R.id.userName);
                 EditText game1Score1 = (EditText) findViewById(R.id.game1Score1);
                 EditText game1Score2 = (EditText) findViewById(R.id.game1Score2);
                 EditText game2Score1 = (EditText) findViewById(R.id.game2Score1);
@@ -436,66 +463,85 @@ public class MainActivity extends AppCompatActivity {
                 TextView game3Team1 = (TextView) findViewById(R.id.game3Team1);
                 TextView game3Team2 = (TextView) findViewById(R.id.game3Team2);
                 TextView champ = (TextView) findViewById(R.id.champ);
+                TextView displayText = (TextView) findViewById(R.id.textView12);
 
-                // set game data for display
-                game1Winner = game3Team1.getText().toString();
+                // validate inputs
+                if ((userName.getText().toString().matches("")) ||
+                        (game1Score1.getText().toString().matches("")) ||
+                        (game1Score2.getText().toString().matches("")) ||
+                        (game2Score1.getText().toString().matches("")) ||
+                        (game2Score2.getText().toString().matches("")) ||
+                        (game3Score1.getText().toString().matches("")) ||
+                        (game3Score2.getText().toString().matches(""))) {
 
-                if (game1Winner.equals(game1Team1.getText().toString())) {
-                    game1Loser = game1Team2.getText().toString();
+                    displayText.setText("Fill in your scores for each game. Then text or email " +
+                            "your picks with the buttons below. \n\nPLEASE FILL ALL THE BLANKS!");
                 } else {
-                    game1Loser = game1Team1.getText().toString();
+
+                    // set game data for display
+                    game1Winner = game3Team1.getText().toString();
+
+                    if (game1Winner.equals(game1Team1.getText().toString())) {
+                        game1Loser = game1Team2.getText().toString();
+                    } else {
+                        game1Loser = game1Team1.getText().toString();
+                    }
+
+                    game2Winner = game3Team2.getText().toString();
+
+                    if (game2Winner.equals(game2Team1.getText().toString())) {
+                        game2Loser = game2Team2.getText().toString();
+                    } else {
+                        game1Loser = game2Team1.getText().toString();
+                    }
+
+                    game3Winner = champ.getText().toString();
+
+                    if (game3Winner.equals(game3Team1.getText().toString())) {
+                        game3Loser = game3Team2.getText().toString();
+                    } else {
+                        game3Loser = game3Team1.getText().toString();
+                    }
+
+                    // determine winner and loser scores
+                    if (Integer.parseInt(game1Score1.getText().toString()) >
+                            Integer.parseInt(game1Score2.getText().toString())) {
+                        game1WinnerScore = game1Score1.getText().toString();
+                        game1LoserScore = game1Score2.getText().toString();
+                    } else {
+                        game1WinnerScore = game1Score2.getText().toString();
+                        game1LoserScore = game1Score1.getText().toString();
+                    }
+
+                    if (Integer.parseInt(game2Score1.getText().toString()) >
+                            Integer.parseInt(game2Score2.getText().toString())) {
+                        game2WinnerScore = game2Score1.getText().toString();
+                        game2LoserScore = game2Score2.getText().toString();
+                    } else {
+                        game2WinnerScore = game2Score2.getText().toString();
+                        game2LoserScore = game2Score1.getText().toString();
+                    }
+
+                    if (Integer.parseInt(game3Score1.getText().toString()) >
+                            Integer.parseInt(game3Score2.getText().toString())) {
+                        game3WinnerScore = game3Score1.getText().toString();
+                        game3LoserScore = game3Score2.getText().toString();
+                    } else {
+                        game3WinnerScore = game3Score2.getText().toString();
+                        game3LoserScore = game3Score1.getText().toString();
+                    }
+
+                    // data to be used as email body
+                    mailMessage = "Player: " + player + "\n" + game1Winner + " over " + game1Loser +
+                            " by " + game1WinnerScore + " to " + game1LoserScore + "\n" + game2Winner +
+                            " over " + game2Loser + " by " + game2WinnerScore + " to " + game2LoserScore +
+                            "\n" + game3Winner + " over " + game3Loser + " by " + game3WinnerScore +
+                            " to " + game3LoserScore;
+
+                    // calls the sendEmail function that opens up the default email client on the device
+                    // and populates fields
+                    sendEmail();
                 }
-
-                game2Winner = game3Team2.getText().toString();
-
-                if (game2Winner.equals(game2Team1.getText().toString())) {
-                    game2Loser = game2Team2.getText().toString();
-                } else {
-                    game1Loser = game2Team1.getText().toString();
-                }
-
-                game3Winner = champ.getText().toString();
-
-                if (game3Winner.equals(game3Team1.getText().toString())) {
-                    game3Loser = game3Team2.getText().toString();
-                } else {
-                    game3Loser = game3Team1.getText().toString();
-                }
-
-                // determine winner and loser scores
-                if (Integer.parseInt(game1Score1.getText().toString()) > Integer.parseInt(game1Score2.getText().toString())) {
-                    game1WinnerScore = game1Score1.getText().toString();
-                    game1LoserScore = game1Score2.getText().toString();
-                } else {
-                    game1WinnerScore = game1Score2.getText().toString();
-                    game1LoserScore = game1Score1.getText().toString();
-                }
-
-                if (Integer.parseInt(game2Score1.getText().toString()) > Integer.parseInt(game2Score2.getText().toString())) {
-                    game2WinnerScore = game2Score1.getText().toString();
-                    game2LoserScore = game2Score2.getText().toString();
-                } else {
-                    game2WinnerScore = game2Score2.getText().toString();
-                    game2LoserScore = game2Score1.getText().toString();
-                }
-
-                if (Integer.parseInt(game3Score1.getText().toString()) > Integer.parseInt(game3Score2.getText().toString())) {
-                    game3WinnerScore = game3Score1.getText().toString();
-                    game3LoserScore = game3Score2.getText().toString();
-                } else {
-                    game3WinnerScore = game3Score2.getText().toString();
-                    game3LoserScore = game3Score1.getText().toString();
-                }
-
-                // data to be used as email body
-                mailMessage = game1Winner + " over " + game1Loser + " by " + game1WinnerScore +
-                        " to " + game1LoserScore + "\n" + game2Winner + " over " + game2Loser +
-                        " by " + game2WinnerScore + " to " + game2LoserScore + "\n" + game3Winner +
-                        " over " + game3Loser + " by " + game3WinnerScore + " to " + game3LoserScore;
-
-                // calls the sendEmail function that opens up the default email client on the device
-                // and populates fields
-                sendEmail();
             }
         });
     }
@@ -522,7 +568,8 @@ public class MainActivity extends AppCompatActivity {
             finish();
             Log.i("Email sent...", "");
         } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(MainActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "There is no email client installed.",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -552,7 +599,8 @@ public class MainActivity extends AppCompatActivity {
                     SmsManager smsManager = SmsManager.getDefault();
 
                     // the message is passed here
-                    smsManager.sendTextMessage(phoneNo, null, textMessage, null, null);
+                    smsManager.sendTextMessage(phoneNo, null, textMessage, null,
+                            null);
                     Toast.makeText(getApplicationContext(), "SMS sent.",
                             Toast.LENGTH_LONG).show();
                     // if no permissions display error

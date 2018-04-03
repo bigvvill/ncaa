@@ -252,12 +252,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/michigan" />
 
+    <EditText
+        android:id="@+id/userName"
+        android:layout_width="201dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="480dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:hint="Your Name"/>
+
     <Button
         android:id="@+id/textButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="508dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="536dp"
         android:text="Text Your Picks"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -266,8 +276,8 @@
         android:id="@+id/emailButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="208dp"
-        android:layout_marginTop="508dp"
+        android:layout_marginStart="196dp"
+        android:layout_marginTop="536dp"
         android:text="Email your picks"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
