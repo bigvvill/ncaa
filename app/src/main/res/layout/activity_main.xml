@@ -13,7 +13,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="264dp"
         android:background="@drawable/lines"
-        android:text="Villanova"
+        android:text="@string/game1T1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:textSize="16dp"
@@ -25,7 +25,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/blines"
-        android:text="Kansas"
+        android:text="@string/game1T2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/game1Team1"
         android:textSize="16dp"
@@ -38,7 +38,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/lines"
-        android:text="Loyola"
+        android:text="@string/game2T1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/game1Team2"
         android:textSize="16dp"
@@ -50,7 +50,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/blines"
-        android:text="Michigan"
+        android:text="@string/game2T2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/game2Team1"
         android:textSize="16dp"
@@ -260,15 +260,15 @@
         android:layout_marginTop="480dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:hint="Your Name"/>
+        android:hint="@string/nameHint"/>
 
     <Button
         android:id="@+id/textButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="536dp"
-        android:text="Text Your Picks"
+        android:text="@string/buttonText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -276,9 +276,9 @@
         android:id="@+id/emailButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="196dp"
+        android:layout_marginStart="156dp"
         android:layout_marginTop="536dp"
-        android:text="Email your picks"
+        android:text="@string/buttonEmail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -288,10 +288,20 @@
         android:layout_height="68dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="116dp"
-        android:text="Fill in your scores for each game. Then text or email your picks with the buttons below. \n\nThanks for playing!"
+        android:text="@string/infoText"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:textColor="@android:color/black" />
+
+    <Button
+        android:id="@+id/clearButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="280dp"
+        android:layout_marginTop="536dp"
+        android:text="@string/buttonClear"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

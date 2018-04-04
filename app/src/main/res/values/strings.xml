@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">2018 NCAA POOL</string>
+    <string name="infoText">Fill in your scores for each game. Then text or email your picks with the buttons below. "\n"\nThanks for playing!</string>
+    <string name="errorText">Fill in your scores for each game. Then text or email your picks with the buttons below. "\n"\nPLEASE FILL ALL THE BLANKS!</string>
+    <string name="buttonClear">Clear</string>
+    <string name="buttonEmail">Email Picks</string>
+    <string name="buttonText">Text Picks</string>
+    <string name="nameHint">Your Name</string>
+    <string name="game2T2">Michigan</string>
+    <string name="game2T1">Loyola</string>
+    <string name="game1T2">Kansas</string>
+    <string name="game1T1">Villanova</string>
 </resources>

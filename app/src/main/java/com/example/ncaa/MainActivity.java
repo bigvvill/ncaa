@@ -40,7 +40,6 @@ import org.w3c.dom.Text;
 public class MainActivity extends AppCompatActivity {
 
     // declare variables
-    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS =0 ;
     String player;
     String game1Winner;
     String game1Loser;
@@ -56,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
     String game3LoserScore;
     String mailMessage;
     String textMessage;
-    String phoneNo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
         EditText game2Score2 = (EditText) findViewById(R.id.game2Score2);
         EditText game3Score1 = (EditText) findViewById(R.id.game3Score1);
         EditText game3Score2 = (EditText) findViewById(R.id.game3Score2);
-        EditText userName = (EditText) findViewById(R.id.userName);
 
         // change listeners
         // game 1 score 1 listener
@@ -373,9 +370,10 @@ public class MainActivity extends AppCompatActivity {
                         (game3Score1.getText().toString().matches("")) ||
                         (game3Score2.getText().toString().matches(""))) {
 
-                    displayText.setText("Fill in your scores for each game. Then text or email " +
-                            "your picks with the buttons below. \n\nPLEASE FILL ALL THE BLANKS!");
+                    displayText.setText(getString(R.string.errorText));
                 } else {
+
+                    displayText.setText(getString(R.string.infoText));
 
                     // set game data for display
                     player = userName.getText().toString();
@@ -474,11 +472,13 @@ public class MainActivity extends AppCompatActivity {
                         (game3Score1.getText().toString().matches("")) ||
                         (game3Score2.getText().toString().matches(""))) {
 
-                    displayText.setText("Fill in your scores for each game. Then text or email " +
-                            "your picks with the buttons below. \n\nPLEASE FILL ALL THE BLANKS!");
+                    displayText.setText(getString(R.string.errorText));
                 } else {
 
+                    displayText.setText(getString(R.string.infoText));
+
                     // set game data for display
+                    player = userName.getText().toString();
                     game1Winner = game3Team1.getText().toString();
 
                     if (game1Winner.equals(game1Team1.getText().toString())) {
@@ -544,72 +544,69 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        Button clearButton = (Button) findViewById(R.id.clearButton);
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+
+                EditText userName = (EditText) findViewById(R.id.userName);
+                EditText game1Score1 = (EditText) findViewById(R.id.game1Score1);
+                EditText game1Score2 = (EditText) findViewById(R.id.game1Score2);
+                EditText game2Score1 = (EditText) findViewById(R.id.game2Score1);
+                EditText game2Score2 = (EditText) findViewById(R.id.game2Score2);
+                EditText game3Score1 = (EditText) findViewById(R.id.game3Score1);
+                EditText game3Score2 = (EditText) findViewById(R.id.game3Score2);
+
+                TextView game1Team1 = (TextView) findViewById(R.id.game1Team1);
+                TextView game1Team2 = (TextView) findViewById(R.id.game1Team2);
+                TextView game2Team1 = (TextView) findViewById(R.id.game2Team1);
+                TextView game2Team2 = (TextView) findViewById(R.id.game2Team2);
+                TextView game3Team1 = (TextView) findViewById(R.id.game3Team1);
+                TextView game3Team2 = (TextView) findViewById(R.id.game3Team2);
+                TextView champ = (TextView) findViewById(R.id.champ);
+                TextView displayText = (TextView) findViewById(R.id.textView12);
+
+                userName.setText("");
+                game1Score1.setText("");
+                game1Score2.setText("");
+                game2Score1.setText("");
+                game2Score2.setText("");
+                game3Score1.setText("");
+                game3Score2.setText("");
+
+                game3Team1.setText("");
+                game3Team2.setText("");
+                champ.setText("");
+
+                displayText.setText(getString(R.string.infoText));
+            }
+        });
     }
 
     protected void sendEmail() {
-        Log.i("Send email", "");
-        String[] TO = {""};
-        String[] CC = {""};
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
 
-        TO[0] = "wcurtis0014@kctcs.edu";
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        /** creates an sms uri */
+        Uri data = Uri.parse("mailto:");
+        intent.setData(data);
 
-        emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.setType("text/plain");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-        emailIntent.putExtra(Intent.EXTRA_CC, CC);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "NCAA Picks");
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{ "wcurtis0014@kctcs.edu" });
+        intent.putExtra(Intent.EXTRA_SUBJECT, "NCAA Picks");
+        intent.putExtra(Intent.EXTRA_TEXT, mailMessage);
 
-        // the message is passed here
-        emailIntent.putExtra(Intent.EXTRA_TEXT, mailMessage);
-
-        try {
-            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-            finish();
-            Log.i("Email sent...", "");
-        } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(MainActivity.this, "There is no email client installed.",
-                    Toast.LENGTH_SHORT).show();
-        }
+        startActivity(intent);
     }
 
     protected void sendSMSMessage() {
-        phoneNo = "8595335829";
 
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.SEND_SMS)
-                != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.SEND_SMS)) {
-            } else {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.SEND_SMS},
-                        MY_PERMISSIONS_REQUEST_SEND_SMS);
-            }
-        }
-    }
+        Intent intent = new Intent("android.intent.action.VIEW");
+        /** creates an sms uri */
+        Uri data = Uri.parse("sms:");
+        intent.setData(data);
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_SEND_SMS: {
-                // if permissions send the SMS messsage
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    SmsManager smsManager = SmsManager.getDefault();
+        intent.putExtra("address", "18595335829");
+        intent.putExtra("sms_body",textMessage);
 
-                    // the message is passed here
-                    smsManager.sendTextMessage(phoneNo, null, textMessage, null,
-                            null);
-                    Toast.makeText(getApplicationContext(), "SMS sent.",
-                            Toast.LENGTH_LONG).show();
-                    // if no permissions display error
-                } else {
-                    Toast.makeText(getApplicationContext(),
-                            "SMS failed, please try again.", Toast.LENGTH_LONG).show();
-                    return;
-                }
-            }
-        }
+        startActivity(intent);
     }
 }
